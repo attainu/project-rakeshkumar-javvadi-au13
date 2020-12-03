@@ -22,7 +22,11 @@ class Spiky():
         self.authentication = {"PARADISE": {"pallavi": 123},
                                "CHINA BISTRO": {"chintu": 123},
                                "CHUTNEYS": {"rakesh": 123}}
-
+        
+        self.L_authentication = {"HYDERABAD": {"hema": 123},
+                                "SECUNDERABAD": {"suman": 123},
+                                "JUBILEE HILLS": {"jack": 123}}
+        
     def mainMenu(self):
         while True:
             print("\n")
@@ -36,7 +40,7 @@ class Spiky():
             print("-"*90)
             m_m_input = input("PLEASE SELECT YOUR OPERATION: ").upper()
             if (m_m_input == "O"):
-                self.order_Food()  # Calling order_Food() function
+                self.register_user()  # Calling order_Food() function
                 break
             elif (m_m_input == "J"):
                 self.join_Services()  # Calling join_Services() function
@@ -48,7 +52,89 @@ class Spiky():
             else:
                 print("\n" + "ERROR: Invalid Input (" +
                       str(m_m_input) + "). Try again!")  # Invalid input
+              
+    def register_user(self):
+        while True:
+            print("\n")
+            print("*"*35, "LOGIN / SIGNUP TO ORDER FOOD", "*"*35)
+            print("\n")
+            print("-"*89)
+            print("(1) LOGIN")
+            print("(2) SIGNUP")
+            print("(3) ORDER FOOD WITHOUT LOGIN/SIGNUP")
+            
+            print("\n"*2)
+            print("-"*89)
+            print("(M) BACK TO MAIN MENU")
+            print("-"*89)
+            register_user_input = input(
+                "PLEASE SELECT YOUR OPERATION: ").upper()
+            if register_user_input == "M":
+                self.mainMenu()
+                break
+            elif register_user_input == "1":
+                # will call the login function which will ask for authentication
+                self.login()
+                break
+            elif register_user_input == "2":
+                # will call signup function which will ask for registration 
+                self.signup()
+                break
+            elif register_user_input == "3":
+                # will call order food 
+                self.order_Food()
+                break
+            else:
+                print("\n" + "ERROR: Invalid Input (",
+                      register_user_input, "). Try again!", sep='')
+          
+    def login(self):
+        while True:
+            print("\n"*2)
+            print("#"*31, "ENTER YOUR DETAILS TO LOGIN", "#"*31)
+            print("\n"*3)
+            print("-"*90)
+            print("(T) TRY AGAIN", "\t"*4, "(M) BACK TO MAIN MENU")
+            print("-"*90)
+            login_user_id = input("PLEASE ENTER USERNAME: ")
+            login_user_pwd = int(input("PLEASE ENTER PASSWORD: "))
+            
+            for k, v in self.L_authentication.items():
+                # check if the username and password in L_authentication_dict
+                if login_user_id in v and login_user_pwd in v.values():
+                    self.order_Food()
+                    break
+            print(
+                "\n" + "ERROR: Incorrect Username or Password entered. Try again!", sep='')
+            print("-"*90)
+            # if user want to go back hence taking another input
+            login_user_input = input(
+                "PLEASE SELECT OPERATION TO BE PERFORMED: ").upper()
+            if login_user_input == "M":
+                self.mainMenu()  # back to main menu
+                break
+            elif login_user_input == "T":
+                continue
+            else:
+                print("\n" + "ERROR: Invalid Input (",
+                      login_user_input, "). Try again!", sep='')
 
+    def signup(self):
+        while True:
+            print("\n")
+            print("#"*32, "COMPLETE YOUR REGISTRATION PROCESS", "#"*32)
+            print("\n")
+            print("-"*89)
+            signup_user_id = input("PLEASE ENTER YOUR USERNAME: ")
+            signup_user_pwd = int(input("PLEASE ENTER YOUR PASSWORD: "))
+            signup_user_address = input("PLEASE ENTER YOUR ADDRESS: ").upper()
+            
+            id_pwd1 = {}
+            id_pwd1.setdefault(signup_user_id, signup_user_pwd)
+            self.L_authentication[signup_user_address] = id_pwd1
+            self.order_Food()
+            break
+  
     def order_Food(self):  # Order food menu
         while True:
             print("\n"*1)
