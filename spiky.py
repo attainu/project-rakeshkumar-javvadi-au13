@@ -23,7 +23,7 @@ class Spiky():
                                "CHINA BISTRO": {"chintu": 123},
                                "CHUTNEYS": {"rakesh": 123}}
         
-        self.L_authentication = {"HYDERABAD": {"hema": 123},
+        self.L_authentication = {"HYDERABAD": {"hema": 123},   #login authentication 
                                 "SECUNDERABAD": {"suman": 123},
                                 "JUBILEE HILLS": {"jack": 123}}
         
@@ -56,7 +56,7 @@ class Spiky():
     def register_user(self):
         while True:
             print("\n")
-            print("*"*35, "LOGIN / SIGNUP TO ORDER FOOD", "*"*35)
+            print("*"*30, "LOGIN / SIGNUP TO ORDER FOOD", "*"*30)
             print("\n")
             print("-"*89)
             print("(1) LOGIN")
@@ -138,7 +138,7 @@ class Spiky():
     def order_Food(self):  # Order food menu
         while True:
             print("\n"*1)
-            print("#"*38, "ORDER FOOD", "#"*38)
+            print("#"*38, "ORDER FOOD", "#"*40)
             print("PLEASE SELECT THE RESTAURENT OF YOUR CHOICE FROM BELOW OPTIONS: \n")
             # itterating over the restaurants names with referrence to count
             for i in range(0, len(self.restaurents_dict)):
@@ -193,7 +193,7 @@ class Spiky():
             dish_quantity_list = []  # for keeping the quantity of every dish selected by user
             while True:
                 print("\n"*2)
-                print("#"*34, "MENU OF", rest, "#"*34)
+                print("#"*34, "MENU OF", rest, "#"*36)
                 print("\n"*2)
                 if rest in self.menu_restaurents:
                     print("ITEMS", "\t"*9, "PRICE")
@@ -332,29 +332,66 @@ class Spiky():
             if payment_input == "C":
                 self.restaurent_Menu(rest)
                 break
-            elif payment_input == "1" or payment_input == "2" or payment_input == "3" or payment_input == "4" or payment_input == "5":
+            #elif payment_input == "1" or payment_input == "2" or payment_input == "3" or payment_input == "4" or payment_input == "5":
                 # here the processing capacity count is incremented for the particular restaurant in restaurant_dict
+                #self.restaurents_dict[rest] += 1
+            elif payment_input == "1" or payment_input == "2":
+                print("*"*39, "ENTER YOUR CARD DETAILS", "*"*39)
+                print("\n"*2)
+                input("ENTER YOUR CARD NO : ")
+                input("ENTER NAME ON CARD : ")
+                input("VALID THRU (MM/YY) : ")
+                input("ENTER CVV : ")
                 self.restaurents_dict[rest] += 1
-                self.payment_Status(rest)
+                self.payment_Status(rest, payment_input)
                 break
+                
+            elif payment_input == "3":
+                print("*"*37, "NET BANKING LOGIN", "*"*37)
+                print("\n"*2)
+                input("USER ID/CUSTOMER ID : ")
+                input("PASSWORD : ")
+                self.restaurents_dict[rest] += 1
+                self.payment_Status(rest, payment_input)
+                break
+            
+            elif payment_input == "4":
+                print("*"*30, "UPI ID(GOOGLEPAY ,BHIM & MORE)", "*"*30)
+                print("\n"*2)
+                input("ENTER YOUR UPI ID : ")
+                input("PASSWORD : ")
+                self.restaurents_dict[rest] += 1
+                self.payment_Status(rest, payment_input)
+                break
+            elif payment_input =='5':
+                self.restaurents_dict[rest] += 1
+                self.payment_Status(rest, payment_input)
+                break 
+      
             else:
                 print("\n" + "ERROR: Invalid Input (",
                       payment_input, "). Try again!", sep='')
 
                 # queue list will maintain list of thread with reference to the restaurent
 
-    def payment_Status(self, rest):
+    def payment_Status(self, rest, payment_input):
         # queue list will maintain list of thread with reference to the restaurent
         self.queueList = []
         while True:
-            print("\n")
-            print("Your payment is in progress.....")
-            print()
-            time.sleep(4)
-            print("\n")
-            print("#"*36, "PAYMENT STATUS", "#"*39)
-            print("\n"*3)
-            print("\t"*4, "PAYMENT SUCCESSFUL")
+            if payment_input == "1" or payment_input == "2" or payment_input == "3" or payment_input == "4":
+                print("\n")
+                print("Your payment is in progress.....")
+                print()
+                time.sleep(4)
+                print("\n")
+                print("#"*36, "PAYMENT STATUS", "#"*36)
+                print("\n"*3)
+                print("\t"*4, "PAYMENT SUCCESSFUL")
+            elif payment_input == "5":                  #COD delivery
+                print("\n")
+                print("#"*36, "ORDER STATUS", "#"*36)
+                print("\n"*3)
+                print("YOUR ORDERED IS PLACED AND YOU HAVE TO PAY CASH AT THE TIME OF DELIVERY")
             print("\n"*3)
             print("Your Food is preparing......")
             print()
