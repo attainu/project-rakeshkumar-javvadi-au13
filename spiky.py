@@ -22,11 +22,11 @@ class Spiky():
         self.authentication = {"PARADISE": {"pallavi": 123},
                                "CHINA BISTRO": {"chintu": 123},
                                "CHUTNEYS": {"rakesh": 123}}
-        
-        self.L_authentication = {"HYDERABAD": {"hema": 123},   #login authentication 
-                                "SECUNDERABAD": {"suman": 123},
-                                "JUBILEE HILLS": {"jack": 123}}
-        
+
+        self.L_authentication = {"HYDERABAD": {"hema": 123},  # login authentication
+                                 "SECUNDERABAD": {"suman": 123},
+                                 "JUBILEE HILLS": {"jack": 123}}
+
     def mainMenu(self):
         while True:
             print("\n")
@@ -52,7 +52,7 @@ class Spiky():
             else:
                 print("\n" + "ERROR: Invalid Input (" +
                       str(m_m_input) + "). Try again!")  # Invalid input
-              
+
     def register_user(self):
         while True:
             print("\n")
@@ -62,7 +62,7 @@ class Spiky():
             print("(1) LOGIN")
             print("(2) SIGNUP")
             print("(3) ORDER FOOD WITHOUT LOGIN/SIGNUP")
-            
+
             print("\n"*2)
             print("-"*89)
             print("(M) BACK TO MAIN MENU")
@@ -77,17 +77,17 @@ class Spiky():
                 self.login()
                 break
             elif register_user_input == "2":
-                # will call signup function which will ask for registration 
+                # will call signup function which will ask for registration
                 self.signup()
                 break
             elif register_user_input == "3":
-                # will call order food 
+                # will call order food
                 self.order_Food()
                 break
             else:
                 print("\n" + "ERROR: Invalid Input (",
                       register_user_input, "). Try again!", sep='')
-          
+
     def login(self):
         while True:
             print("\n"*2)
@@ -98,7 +98,7 @@ class Spiky():
             print("-"*90)
             login_user_id = input("PLEASE ENTER USERNAME: ")
             login_user_pwd = int(input("PLEASE ENTER PASSWORD: "))
-            
+
             for k, v in self.L_authentication.items():
                 # check if the username and password in L_authentication_dict
                 if login_user_id in v and login_user_pwd in v.values():
@@ -128,13 +128,13 @@ class Spiky():
             signup_user_id = input("PLEASE ENTER YOUR USERNAME: ")
             signup_user_pwd = int(input("PLEASE ENTER YOUR PASSWORD: "))
             signup_user_address = input("PLEASE ENTER YOUR ADDRESS: ").upper()
-            
+
             id_pwd1 = {}
             id_pwd1.setdefault(signup_user_id, signup_user_pwd)
             self.L_authentication[signup_user_address] = id_pwd1
             self.order_Food()
             break
-  
+
     def order_Food(self):  # Order food menu
         while True:
             print("\n"*1)
@@ -332,9 +332,6 @@ class Spiky():
             if payment_input == "C":
                 self.restaurent_Menu(rest)
                 break
-            #elif payment_input == "1" or payment_input == "2" or payment_input == "3" or payment_input == "4" or payment_input == "5":
-                # here the processing capacity count is incremented for the particular restaurant in restaurant_dict
-                #self.restaurents_dict[rest] += 1
             elif payment_input == "1" or payment_input == "2":
                 print("*"*39, "ENTER YOUR CARD DETAILS", "*"*39)
                 print("\n"*2)
@@ -342,10 +339,10 @@ class Spiky():
                 input("ENTER NAME ON CARD : ")
                 input("VALID THRU (MM/YY) : ")
                 input("ENTER CVV : ")
-                self.restaurents_dict[rest] += 1
+                self.restaurents_dict[rest] += 1  # here the processing capacity count is incremented for the particular restaurant in restaurant_dict
                 self.payment_Status(rest, payment_input)
                 break
-                
+
             elif payment_input == "3":
                 print("*"*37, "NET BANKING LOGIN", "*"*37)
                 print("\n"*2)
@@ -354,7 +351,7 @@ class Spiky():
                 self.restaurents_dict[rest] += 1
                 self.payment_Status(rest, payment_input)
                 break
-            
+
             elif payment_input == "4":
                 print("*"*30, "UPI ID(GOOGLEPAY ,BHIM & MORE)", "*"*30)
                 print("\n"*2)
@@ -363,16 +360,14 @@ class Spiky():
                 self.restaurents_dict[rest] += 1
                 self.payment_Status(rest, payment_input)
                 break
-            elif payment_input =='5':
+            elif payment_input == '5':
                 self.restaurents_dict[rest] += 1
                 self.payment_Status(rest, payment_input)
-                break 
-      
+                break
+
             else:
                 print("\n" + "ERROR: Invalid Input (",
                       payment_input, "). Try again!", sep='')
-
-                # queue list will maintain list of thread with reference to the restaurent
 
     def payment_Status(self, rest, payment_input):
         # queue list will maintain list of thread with reference to the restaurent
@@ -387,11 +382,12 @@ class Spiky():
                 print("#"*36, "PAYMENT STATUS", "#"*36)
                 print("\n"*3)
                 print("\t"*4, "PAYMENT SUCCESSFUL")
-            elif payment_input == "5":                  #COD delivery
+            elif payment_input == "5":                  # COD delivery
                 print("\n")
                 print("#"*36, "ORDER STATUS", "#"*36)
                 print("\n"*3)
-                print("YOUR ORDERED IS PLACED AND YOU HAVE TO PAY CASH AT THE TIME OF DELIVERY")
+                print(
+                    "YOUR ORDERED IS PLACED AND YOU HAVE TO PAY CASH AT THE TIME OF DELIVERY")
             print("\n"*3)
             print("Your Food is preparing......")
             print()
